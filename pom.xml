@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <properties>
-<!--        <aspectj.version>1.8.1</aspectj.version>-->
-        <aspectj.version>1.9.6</aspectj.version>
+        <!-- AspectJ <= 1.9.4 works in this setup, >= 1.9.5 fails to compile -->
+        <aspectj.version>1.9.5</aspectj.version>
     </properties>
 
     <build>

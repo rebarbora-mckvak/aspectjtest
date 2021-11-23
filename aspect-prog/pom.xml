@@ -10,7 +10,10 @@
         <version>1-SNAPSHOT</version>
     </parent>
     <artifactId>aspect-prog</artifactId>
-    <packaging>jar</packaging>
+
+    <properties>
+        <main-class>MyFoo</main-class>
+    </properties>
 
     <build>
         <plugins>
@@ -31,6 +34,24 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.jolira</groupId>
+                <artifactId>onejar-maven-plugin</artifactId>
+                <version>1.4.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>one-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <onejarVersion>0.96</onejarVersion>
+                    <mainClass>${main-class}</mainClass>
+                    <attachToBuild>true</attachToBuild>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
