@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>foo</groupId>
@@ -10,8 +10,10 @@
     <packaging>pom</packaging>
 
     <properties>
-<!--        <aspectj.version>1.8.1</aspectj.version>-->
-        <aspectj.version>1.9.6</aspectj.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <aspectj.version>1.9.8.RC2</aspectj.version>
+        <aspectj-maven.version>1.14.0</aspectj-maven.version>
     </properties>
 
     <build>
@@ -20,45 +22,30 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.14.0</version>
+                <version>${aspectj-maven.version}</version>
                 <executions>
                     <execution>
-                        <id>ajccompile</id>
                         <goals>
-                            <goal>compile</goal>
                             <goal>test-compile</goal>
+                            <goal>compile</goal>
                         </goals>
-                        <configuration>
-                            <complianceLevel>1.8</complianceLevel>
-                            <source>1.8</source>
-                            <target>1.8</target>
-                            <showWeaveInfo>true</showWeaveInfo>
-                            <verbose>true</verbose>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <showWeaveInfo>true</showWeaveInfo>
+                    <verbose>true</verbose>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <complianceLevel>${maven.compiler.target}</complianceLevel>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjrt</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
                         <artifactId>aspectjtools</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
@@ -76,7 +63,9 @@
     </dependencies>
 
     <modules>
-        <module>aspect-lib</module>
+        <module>aspect-annotations</module>
         <module>aspect-prog</module>
+        <module>aspect-lib</module>
     </modules>
+
 </project>

@@ -5,10 +5,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface BarAnnotation {
-
-    // Note the attribute does not have any default value.
-    String name();
+    // Note the attribute does not have any default value
+    String name() default "DEFAULT";
 }
