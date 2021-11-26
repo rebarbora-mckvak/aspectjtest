@@ -11,7 +11,7 @@
 
     <properties>
         <!-- AspectJ <= 1.9.4 works in this setup, >= 1.9.5 fails to compile -->
-        <aspectj.version>1.9.5</aspectj.version>
+        <aspectj.version>1.9.8.RC3</aspectj.version>
     </properties>
 
     <build>
